@@ -1,0 +1,19 @@
+services:
+  postgres:
+    image: postgres:18
+    restart: unless-stopped
+    container_name: gerenciamento_bar_postgres
+    
+    environment:
+      POSTGRES_DB: gerenciamento_bar
+      POSTGRES_USER: bar_user
+      POSTGRES_PASSWORD: bar_password
+      
+    ports:
+      - "5433:5432"
+      
+    volumes:
+      - postgres_data:/var/lib/postgresql
+      
+volumes:
+  postgres_data:

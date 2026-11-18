@@ -1,0 +1,19 @@
+# NetBeans
+/nbproject/private/
+/build/
+/dist/
+/nbbuild/
+/nbdist/
+/nbactions.xml
+
+# Java
+*.class
+*.jar
+*.war
+*.ear
+
+# IDE e sistema operacional
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
