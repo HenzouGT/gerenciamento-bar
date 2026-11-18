@@ -30,7 +30,7 @@ public class FuncionarioServiceImpl implements FuncionarioService {
     }
 
     @Override
-    public Funcionario criar(CriarFuncionarioDTO dados) {
+    public void criar(CriarFuncionarioDTO dados) {
         if (dados == null) {
             throw new IllegalArgumentException(
                 "Os dados do funcionário são obrigatórios."
@@ -51,9 +51,9 @@ public class FuncionarioServiceImpl implements FuncionarioService {
             throw new IllegalArgumentException(
                 "Já existe um funcionário cadastrado com esse CPF."
             );
-        }
-                
-        return funcionarioRepository.salvar(funcionario);
+        }        
+        
+        funcionarioRepository.salvar(funcionario);
     }
     
     @Override
@@ -84,7 +84,7 @@ public class FuncionarioServiceImpl implements FuncionarioService {
     }
     
     @Override
-    public Funcionario editar(Long id, EditarFuncionarioDTO dados) {
+    public void editar(Long id, EditarFuncionarioDTO dados) {
         validarId(id);
         
         if (dados == null) {
@@ -111,8 +111,8 @@ public class FuncionarioServiceImpl implements FuncionarioService {
                 "Já existe um funcionário cadastrado com esse CPF."
             );
         }
-
-        return funcionarioRepository.editar(id, funcionarioAtual);
+        
+        funcionarioRepository.editar(id, funcionarioAtual);
     }
     
     @Override

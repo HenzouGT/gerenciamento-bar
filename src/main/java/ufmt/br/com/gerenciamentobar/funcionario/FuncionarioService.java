@@ -14,13 +14,13 @@ import ufmt.br.com.gerenciamentobar.funcionario.dto.ResumoFuncionarioDTO;
  * @author HenzouGT
  */
 public interface FuncionarioService {
-    public Funcionario criar(CriarFuncionarioDTO dados);
+    public void criar(CriarFuncionarioDTO dados);
     
     public List<ResumoFuncionarioDTO> buscarTodos();
     
     public Optional<ResumoFuncionarioDTO> buscarPorId(Long id);
     
-    public Funcionario editar(Long id, EditarFuncionarioDTO dados);
+    public void editar(Long id, EditarFuncionarioDTO dados);
     
     public void desativar(Long id);
     

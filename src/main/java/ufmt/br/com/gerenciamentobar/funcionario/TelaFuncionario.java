@@ -6,11 +6,11 @@ package ufmt.br.com.gerenciamentobar.funcionario;
 
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
-import ufmt.br.com.gerenciamentobar.funcionario.Cargo;
 import ufmt.br.com.gerenciamentobar.funcionario.dto.CriarFuncionarioDTO;
 import ufmt.br.com.gerenciamentobar.funcionario.dto.EditarFuncionarioDTO;
 import ufmt.br.com.gerenciamentobar.funcionario.dto.ResumoFuncionarioDTO;
 import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -345,7 +345,8 @@ public class TelaFuncionario extends javax.swing.JFrame {
                 if (!event.getValueIsAdjusting()) {
                     carregarFuncionarioSelecionado();
                 }
-            });
+            });            
+        tblFuncionarios.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     }
 
     private void carregarFuncionarios() {
