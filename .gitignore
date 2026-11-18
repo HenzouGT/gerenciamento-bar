@@ -17,3 +17,6 @@
 .vscode/
 .DS_Store
 Thumbs.db
+
+# Arquivos gerados pelo Maven
+target/
