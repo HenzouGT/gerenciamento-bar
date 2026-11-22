@@ -66,6 +66,7 @@ public class TelaMesaSinuca extends javax.swing.JFrame {
         btnEditar2 = new javax.swing.JButton();
         btnManutencao = new javax.swing.JButton();
         btnOcupar = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -132,6 +133,9 @@ public class TelaMesaSinuca extends javax.swing.JFrame {
         btnOcupar.setText("Ocupar");
         btnOcupar.addActionListener(this::btnOcuparActionPerformed);
 
+        btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(this::btnExcluirActionPerformed);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -159,13 +163,15 @@ public class TelaMesaSinuca extends javax.swing.JFrame {
                 .addComponent(btnCriar1)
                 .addGap(40, 40, 40)
                 .addComponent(btnEditar2)
-                .addGap(37, 37, 37)
+                .addGap(20, 20, 20)
+                .addComponent(btnExcluir)
+                .addGap(20, 20, 20)
                 .addComponent(btnOcupar)
-                .addGap(35, 35, 35)
+                .addGap(20, 20, 20)
                 .addComponent(btnLiberar)
-                .addGap(30, 30, 30)
+                .addGap(20, 20, 20)
                 .addComponent(btnManutencao)
-                .addGap(118, 118, 118))
+                .addGap(50, 50, 50))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -189,6 +195,7 @@ public class TelaMesaSinuca extends javax.swing.JFrame {
                     .addComponent(btnEditar2)
                     .addComponent(btnLiberar)
                     .addComponent(btnManutencao)
+                    .addComponent(btnExcluir)
                     .addComponent(btnOcupar))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
@@ -346,6 +353,37 @@ public class TelaMesaSinuca extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btnOcuparActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        if (mesaSinucaSelecionadaId == null) {
+            JOptionPane.showMessageDialog(this, "Selecione uma mesa de sinuca.");
+            return;
+        }
+
+        int resposta = JOptionPane.showConfirmDialog(
+            this,
+            "Deseja excluir esta mesa de sinuca?",
+            "Confirmação",
+            JOptionPane.YES_NO_OPTION
+        );
+
+        if (resposta == JOptionPane.YES_OPTION) {
+            try {
+                mesaSinucaService.excluir(mesaSinucaSelecionadaId);
+
+                limparFormulario();
+                carregarMesasSinuca();
+
+                JOptionPane.showMessageDialog(
+                    this,
+                    "Mesa de sinuca excluída."
+                );
+
+            } catch (RuntimeException e) {
+                exibirErro(e);
+            }
+        }
+    }//GEN-LAST:event_btnExcluirActionPerformed
     
     private void configurarComponentes() {
         spnNumero.setModel(
@@ -462,6 +500,7 @@ public class TelaMesaSinuca extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCriar1;
     private javax.swing.JButton btnEditar2;
+    private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnLiberar;
     private javax.swing.JButton btnManutencao;
     private javax.swing.JButton btnNovo1;

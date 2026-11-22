@@ -18,6 +18,8 @@ public interface ProdutoRepository {
     Optional<Produto> buscarPorId(Long id);
     
     Produto editar(Long id, Produto produto);
+
+    void excluir(Long id);
     
     void desativar(Long id);
     

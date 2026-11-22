@@ -21,6 +21,8 @@ public interface MesaSinucaService {
     public Optional<ResumoMesaSinucaDTO> buscarPorId(Long id);
     
     public MesaSinuca editar(Long id, EditarMesaSinucaDTO dados);
+
+    public void excluir(Long id);
     
     public void ocupar(Long id);
     

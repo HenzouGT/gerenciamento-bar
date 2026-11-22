@@ -85,6 +85,12 @@ public class MesaSinucaServiceImpl implements MesaSinucaService {
         
         return mesaSinucaRepository.editar(id, mesaSinucaAtual);        
     }
+
+    @Override
+    public void excluir(Long id) {
+        validarId(id);
+        mesaSinucaRepository.excluir(id);
+    }
     
     @Override
     public void ocupar(Long id) {

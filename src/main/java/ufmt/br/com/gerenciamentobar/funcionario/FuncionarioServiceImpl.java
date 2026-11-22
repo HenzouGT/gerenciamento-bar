@@ -114,6 +114,12 @@ public class FuncionarioServiceImpl implements FuncionarioService {
         
         funcionarioRepository.editar(id, funcionarioAtual);
     }
+
+    @Override
+    public void excluir(Long id) {
+        validarId(id);
+        funcionarioRepository.excluir(id);
+    }
     
     @Override
     public void desativar(Long id) {

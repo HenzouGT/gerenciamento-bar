@@ -66,6 +66,7 @@ public class TelaFuncionario extends javax.swing.JFrame {
         lblSenha = new javax.swing.JLabel();
         lblTitulo = new javax.swing.JLabel();
         btnAtivar = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -135,6 +136,9 @@ public class TelaFuncionario extends javax.swing.JFrame {
         btnAtivar.setText("Ativar");
         btnAtivar.addActionListener(this::btnAtivarActionPerformed);
 
+        btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(this::btnExcluirActionPerformed);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -168,11 +172,13 @@ public class TelaFuncionario extends javax.swing.JFrame {
                 .addComponent(btnCriar)
                 .addGap(41, 41, 41)
                 .addComponent(btnEditar)
-                .addGap(39, 39, 39)
+                .addGap(30, 30, 30)
+                .addComponent(btnExcluir)
+                .addGap(30, 30, 30)
                 .addComponent(btnDesativar)
-                .addGap(38, 38, 38)
+                .addGap(30, 30, 30)
                 .addComponent(btnAtivar)
-                .addGap(179, 179, 179))
+                .addGap(100, 100, 100))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -207,6 +213,7 @@ public class TelaFuncionario extends javax.swing.JFrame {
                     .addComponent(btnCriar)
                     .addComponent(btnNovo)
                     .addComponent(btnEditar)
+                    .addComponent(btnExcluir)
                     .addComponent(btnAtivar))
                 .addGap(30, 30, 30))
         );
@@ -336,6 +343,34 @@ public class TelaFuncionario extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnAtivarActionPerformed
 
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        if (funcionarioSelecionadoId == null) {
+            JOptionPane.showMessageDialog(this, "Selecione um funcionário.");
+            return;
+        }
+
+        int resposta = JOptionPane.showConfirmDialog(
+            this,
+            "Deseja excluir este funcionário?",
+            "Confirmação",
+            JOptionPane.YES_NO_OPTION
+        );
+
+        if (resposta == JOptionPane.YES_OPTION) {
+            try {
+                funcionarioService.excluir(funcionarioSelecionadoId);
+
+                limparFormulario();
+                carregarFuncionarios();
+
+                JOptionPane.showMessageDialog(this, "Funcionário excluído.");
+
+            } catch (RuntimeException e) {
+                exibirErro(e);
+            }
+        }
+    }//GEN-LAST:event_btnExcluirActionPerformed
+
     private void configurarComponentes() {
         cmbCargo.setModel(new DefaultComboBoxModel<>(Cargo.values()));
         
@@ -440,6 +475,7 @@ public class TelaFuncionario extends javax.swing.JFrame {
     private javax.swing.JButton btnCriar;
     private javax.swing.JButton btnDesativar;
     private javax.swing.JButton btnEditar;
+    private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnNovo;
     private javax.swing.JComboBox<Cargo> cmbCargo;
     private javax.swing.JScrollPane jScrollPane1;

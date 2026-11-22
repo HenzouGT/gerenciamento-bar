@@ -21,6 +21,8 @@ public interface FuncionarioService {
     public Optional<ResumoFuncionarioDTO> buscarPorId(Long id);
     
     public void editar(Long id, EditarFuncionarioDTO dados);
+
+    public void excluir(Long id);
     
     public void desativar(Long id);
     

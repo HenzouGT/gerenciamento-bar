@@ -18,6 +18,8 @@ public interface MesaSinucaRepository {
     public Optional<MesaSinuca> buscarPorId(Long id);
     
     public MesaSinuca editar(Long id, MesaSinuca mesaSinuca);
+
+    public void excluir(Long id);
     
     public void atualizarStatus(MesaSinuca mesa);
 }

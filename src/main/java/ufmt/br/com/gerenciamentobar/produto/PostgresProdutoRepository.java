@@ -145,6 +145,29 @@ public class PostgresProdutoRepository implements ProdutoRepository {
             throw new RuntimeException("Falha ao editar produto", e);
         }
     }
+
+    @Override
+    public void excluir(Long id) {
+        String sql = """
+            DELETE FROM produto WHERE id = ?
+        """;
+
+        try (
+            Connection connection = DatabaseConnection.open();
+            PreparedStatement statement = connection.prepareStatement(sql)
+        ) {
+            statement.setLong(1, id);
+
+            int linhasAfetadas = statement.executeUpdate();
+
+            if (linhasAfetadas == 0) {
+                throw new NotFoundException("Produto não encontrado: " + id);
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Falha ao excluir produto.", e);
+        }
+    }
     
     @Override
     public void desativar(Long id) {

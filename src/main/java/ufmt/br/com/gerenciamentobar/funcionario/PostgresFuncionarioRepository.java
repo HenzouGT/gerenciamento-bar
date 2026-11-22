@@ -183,6 +183,29 @@ public class PostgresFuncionarioRepository implements FuncionarioRepository {
             throw new RuntimeException("Falha ao editar funcionário.", e);
         }
     }
+
+    @Override
+    public void excluir(Long id) {
+        String sql = """
+            DELETE FROM funcionario WHERE id = ?
+        """;
+
+        try (
+            Connection connection = DatabaseConnection.open();
+            PreparedStatement statement = connection.prepareStatement(sql)
+        ) {
+            statement.setLong(1, id);
+
+            int linhasAfetadas = statement.executeUpdate();
+
+            if (linhasAfetadas == 0) {
+                throw new NotFoundException("Funcionário não encontrado: " + id);
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Falha ao excluir funcionário.", e);
+        }
+    }
     
     @Override
     public void desativar(Long id) {

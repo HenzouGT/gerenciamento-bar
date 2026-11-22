@@ -21,6 +21,8 @@ public interface ProdutoService {
     public Optional<ResumoProdutoDTO> buscarPorId(Long id);
     
     public void editar(Long id, EditarProdutoDTO dados);
+
+    public void excluir(Long id);
     
     public void desativar(Long id);
     

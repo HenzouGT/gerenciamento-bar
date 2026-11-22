@@ -20,6 +20,8 @@ public interface FuncionarioRepository {
     Optional<Funcionario> buscarPorId(Long id);        
     
     Funcionario editar(Long id, Funcionario funcionario);
+
+    void excluir(Long id);
     
     void desativar(Long id);
     

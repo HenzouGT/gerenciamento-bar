@@ -63,6 +63,7 @@ public class TelaProduto extends javax.swing.JFrame {
         btnCriar = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
         btnAtivar = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
         txtNome = new javax.swing.JTextField();
         ftxtPreco = new javax.swing.JFormattedTextField();
         spnQuantidade = new javax.swing.JSpinner();
@@ -131,6 +132,9 @@ public class TelaProduto extends javax.swing.JFrame {
         btnAtivar.setText("Ativar");
         btnAtivar.addActionListener(this::btnAtivarActionPerformed);
 
+        btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(this::btnExcluirActionPerformed);
+
         txtNome.addActionListener(this::txtNomeActionPerformed);
 
         ftxtPreco.addActionListener(this::ftxtPrecoActionPerformed);
@@ -152,11 +156,13 @@ public class TelaProduto extends javax.swing.JFrame {
                         .addComponent(btnCriar)
                         .addGap(41, 41, 41)
                         .addComponent(btnEditar)
-                        .addGap(39, 39, 39)
+                        .addGap(30, 30, 30)
+                        .addComponent(btnExcluir)
+                        .addGap(30, 30, 30)
                         .addComponent(btnDesativar)
-                        .addGap(38, 38, 38)
+                        .addGap(30, 30, 30)
                         .addComponent(btnAtivar)
-                        .addGap(179, 179, 179))
+                        .addGap(100, 100, 100))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -207,6 +213,7 @@ public class TelaProduto extends javax.swing.JFrame {
                     .addComponent(btnCriar)
                     .addComponent(btnNovo)
                     .addComponent(btnEditar)
+                    .addComponent(btnExcluir)
                     .addComponent(btnAtivar))
                 .addGap(30, 30, 30))
         );
@@ -321,6 +328,34 @@ public class TelaProduto extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btnAtivarActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        if (produtoSelecionadoId == null) {
+            JOptionPane.showMessageDialog(this, "Selecione um produto.");
+            return;
+        }
+
+        int resposta = JOptionPane.showConfirmDialog(
+            this,
+            "Deseja excluir esse produto?",
+            "Confirmação",
+            JOptionPane.YES_NO_OPTION
+        );
+
+        if (resposta == JOptionPane.YES_OPTION) {
+            try {
+                produtoService.excluir(produtoSelecionadoId);
+
+                limparFormulario();
+                carregarProdutos();
+
+                JOptionPane.showMessageDialog(this, "Produto excluído.");
+
+            } catch (RuntimeException e) {
+                exibirErro(e);
+            }
+        }
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
         // TODO add your handling code here:
@@ -462,6 +497,7 @@ public class TelaProduto extends javax.swing.JFrame {
     private javax.swing.JButton btnCriar;
     private javax.swing.JButton btnDesativar;
     private javax.swing.JButton btnEditar;
+    private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnNovo;
     private javax.swing.JCheckBox chkAtivo;
     private javax.swing.JFormattedTextField ftxtPreco;

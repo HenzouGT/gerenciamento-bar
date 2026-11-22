@@ -85,6 +85,12 @@ public class ProdutoServiceImpl implements ProdutoService {
         
         produtoRepository.editar(id, produtoAtual);        
     }
+
+    @Override
+    public void excluir(Long id) {
+        validarId(id);
+        produtoRepository.excluir(id);
+    }
     
     @Override
     public void desativar(Long id) {

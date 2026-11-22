@@ -141,6 +141,29 @@ public class PostgresMesaSinucaRepository implements MesaSinucaRepository {
             throw new RuntimeException("Falha ao editar mesa de sinuca.", e);
         }
     }
+
+    @Override
+    public void excluir(Long id) {
+        String sql = """
+            DELETE FROM mesa_sinuca WHERE id = ?
+        """;
+
+        try (
+            Connection connection = DatabaseConnection.open();
+            PreparedStatement statement = connection.prepareStatement(sql)
+        ) {
+            statement.setLong(1, id);
+
+            int linhasAfetadas = statement.executeUpdate();
+
+            if (linhasAfetadas == 0) {
+                throw new NotFoundException("Mesa de sinuca não encontrada: " + id);
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Falha ao excluir mesa de sinuca.", e);
+        }
+    }
     
     @Override 
     public void atualizarStatus(MesaSinuca mesa) {
