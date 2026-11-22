@@ -14,13 +14,13 @@ import ufmt.br.com.gerenciamentobar.produto.dto.ResumoProdutoDTO;
  * @author HenzouGT
  */
 public interface ProdutoService {        
-    public Produto criar(CriarProdutoDTO dados);
+    public void criar(CriarProdutoDTO dados);
     
     public List<ResumoProdutoDTO> buscarTodos();
     
     public Optional<ResumoProdutoDTO> buscarPorId(Long id);
     
-    public Produto editar(Long id, EditarProdutoDTO dados);
+    public void editar(Long id, EditarProdutoDTO dados);
     
     public void desativar(Long id);
     

@@ -23,7 +23,7 @@ public class ProdutoServiceImpl implements ProdutoService {
     }
     
     @Override
-    public Produto criar(CriarProdutoDTO dados) {
+    public void criar(CriarProdutoDTO dados) {
         if (dados == null) {
             throw new IllegalArgumentException(
                 "Os dados do produto são obrigatórios."
@@ -37,7 +37,7 @@ public class ProdutoServiceImpl implements ProdutoService {
             dados.ativo()
         );
         
-        return produtoRepository.salvar(produto);
+        produtoRepository.salvar(produto);
     }        
     
     @Override
@@ -67,7 +67,7 @@ public class ProdutoServiceImpl implements ProdutoService {
     }
     
     @Override
-    public Produto editar(Long id, EditarProdutoDTO dados) {
+    public void editar(Long id, EditarProdutoDTO dados) {
         validarId(id);
         
         if (dados == null) {
@@ -83,7 +83,7 @@ public class ProdutoServiceImpl implements ProdutoService {
         produtoAtual.alterarPreco(dados.preco());
         produtoAtual.setEstoque(dados.quantidadeEstoque());
         
-        return produtoRepository.editar(id, produtoAtual);        
+        produtoRepository.editar(id, produtoAtual);        
     }
     
     @Override
